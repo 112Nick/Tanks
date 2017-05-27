@@ -1,14 +1,17 @@
-/*
-Класс хранит все объекты игры и отвечает за их обновление и взаимодействие.
-*/
 
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 #include "GameObject.h"
 #include "Tank.h"
+#include "Map.h"
+#include "Bullet.h"
 #include <vector>
 
 class Tank;
+class Menu;
+class PauseMenu;
+class LoseMenu;
+class Bot;
 
 class Controller
 {	
@@ -16,20 +19,40 @@ public:
 	Controller();
 	void Tick();
 	void Render();
-	void AddLevelMapItem(GameObject& item);
-	void AddEnemy(GameObject& enemy);
-	void AddOther(GameObject& other);
+	void NewGame();
+	void Continue();
+	void StopGame();
+	void ResetGame();
+	void AddPlayerBullet(Bullet b);
+	void AddEnemyBullet(Bullet b);
 	void SetPlayer(Tank* p);
+	void SetMap(Map* m);
+	void SetMenu(Menu* m);
+	void SetPauseMenu(PauseMenu* m);
+	void SetLoseMenu(LoseMenu* m);
+	void AddBot(Bot b);
 	void Keyboard(unsigned char key);
 	void SpecialKeyboard(int k);
-	bool Check(int a, int b);
+	void RenderScore();
+	~Controller();
 private:
-	std::vector<GameObject*> levelMap;
-	std::vector<GameObject*> enemies;
-	std::vector<GameObject*> other;
+	void HandleBlocks();
+	void HandleEnemies();
+	void HandleBullets();
+	bool CollidesBlocks(const Rectangle& r);
+	int score;
+	std::vector<Bullet> playerBullets;
+    std::vector<Bullet> enemyBullets;
+	std::vector<Bot> enemies;
+
+	Menu* menu;
+	PauseMenu* pmenu;
+	LoseMenu* lmenu;
 	Tank* player;
-	void RenderMap();
-	void GetMapFromFile();
-	bool field[40][30];
+	Map* map;
+
+	bool pause;
+	bool start;
+	bool lose;
 };
 #endif

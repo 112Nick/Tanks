@@ -5,13 +5,10 @@
 #include <GL/glu.h>
 #include <GL/glut.h>
 
-const int SCALE=20;
-
 Bullet::Bullet(): GameObject(), Rectangle(), speed(0.0f), dir(LEFT)  {	}
-Bullet::Bullet(float _x, float _y, Direction _dir) : GameObject(_x,_y), Rectangle(_x, _y, 1, 1), speed(1.0f), dir(_dir)
-{ 
-	x = _x;
-	y = _y;
+Bullet::Bullet(float _x, float _y, Direction _dir) : GameObject(_x,_y), Rectangle(_x, _y, 0.8f, 0.8f), Point(_x, _y), speed(1.0f), dir(_dir)
+{
+
 }
 void Bullet::Tick() 
 {
@@ -36,8 +33,7 @@ void Bullet::Tick()
 void Bullet::Render() 
 { 
 	 glColor3ub( 6, 0, 176);
-     glRectf((x-0.4)*SCALE,(y-0.4)*SCALE,(x+0.4)*SCALE,(y+0.4)*SCALE);
-
+     glRectf(x*SCALE, y*SCALE, (x+width)*SCALE, (y+height)*SCALE);
 }
 
 void Bullet::Keyboard(int i){}

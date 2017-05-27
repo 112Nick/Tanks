@@ -14,5 +14,8 @@ public:
 	virtual void Render() = 0;
 	virtual void Keyboard(int key) = 0;
 	virtual void SpecialKeyboard(int key) = 0;
+	bool IsDead();
+protected:
+	bool dead;
 };
 #endif

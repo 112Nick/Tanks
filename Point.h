@@ -8,8 +8,9 @@ class Point
 public:
 	Point();
 	Point(float, float);
-	float GetX();
-	float GetY();
+	float GetX() const;
+	float GetY() const;
+	void Translate(float x, float y);
 protected:
 	float x, y;
 };
