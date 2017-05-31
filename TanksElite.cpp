@@ -15,7 +15,7 @@ const int DELAY = 30;
 const int WIDTH = 800, HEIGHT = 600;
 const int SCALE = 10;
 
-Controller c;
+Controller c = Controller::getInstance();
 
 void Render() {
 	glFlush();

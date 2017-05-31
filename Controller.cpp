@@ -8,6 +8,11 @@
 #include "LoseMenu.h"
 #include "Bot.h"
 
+Controller& Controller::getInstance() 
+	{
+		static Controller p_instance;
+		return p_instance;
+    }
 
 Controller::Controller(): start(false), pause(false), lose(false)
 {

@@ -13,10 +13,12 @@ class PauseMenu;
 class LoseMenu;
 class Bot;
 
+
+
 class Controller
 {	
 public:
-	Controller();
+	static Controller & getInstance();
 	void Tick();
 	void Render();
 	void NewGame();
@@ -36,6 +38,8 @@ public:
 	void RenderScore();
 	~Controller();
 private:
+	static Controller* p_instance;
+	Controller();	
 	void HandleBlocks();
 	void HandleEnemies();
 	void HandleBullets();
