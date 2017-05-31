@@ -36,10 +36,12 @@ public:
 	void Keyboard(unsigned char key);
 	void SpecialKeyboard(int k);
 	void RenderScore();
-	~Controller();
 private:
 	static Controller* p_instance;
 	Controller();	
+	 ~Controller();
+    Controller(Controller const&) = delete;
+    Controller& operator= (Controller const&) = delete; 
 	void HandleBlocks();
 	void HandleEnemies();
 	void HandleBullets();
